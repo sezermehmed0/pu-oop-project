@@ -1,6 +1,8 @@
 package Figures;
 
 
+import Tile.Tile;
+
 import java.awt.*;
 
 public class Knight extends Figure {
@@ -12,4 +14,18 @@ public class Knight extends Figure {
         this.attackingSquares = 1;
         this.movementSpeed = 1;
     }
-}
+
+    @Override
+    public void paint(Graphics g) {
+
+        int x = this.col * Tile.TILE_SIZE;
+        int y = this.row * Tile.TILE_SIZE;
+
+        g.setColor(this.color);
+        g.fillRect(x + 10,y + 10,50,50);
+        g.setColor(Color.BLACK);
+        g.drawString(" Kn ", x + 30, y + 40);
+    }
+
+    }
+
