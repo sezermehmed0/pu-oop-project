@@ -1,59 +1,38 @@
 package Game;
 
 
-import Tile.Tile;
 
-import javax.swing.*;
 import java.awt.*;
 
+import Tile.Tile;
 
-public class Battlefield extends JPanel {
-        static final int SCREEN_WIDTH = 1250;
-        static final int SCREEN_HEIGHT = 825;
+public class Battlefield extends Tile {
 
-        Battlefield(){
+    public Color color;
 
-            this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
-            this.setFocusable(true);
+    public Battlefield(int row, int col) {
+        super(row, col);
+        
+    }
 
+    @Override
+    public void renderTile(Graphics g) {
+
+        int tileX = this.col * Tile.TILE_SIZE;
+        int tileY = this.row * Tile.TILE_SIZE;
+
+        if (this.row == 2 || this.row == 3 || this.row == 4) {
+            g.setColor(Color.lightGray);
+            g.fillRect(tileX,tileY,TILE_SIZE,TILE_SIZE);
+            
         }
+    }
 
-        @Override
-        public void paint(Graphics g) {
+    public Color getColor() {
+        return color;
+    }
 
-            for(int row = 0; row < 7; row++) {
-                for(int col = 0; col < 9; col++) {
-
-                    this.renderTile(g, row, col);
-
-                }
-            }
-
-        }
-
-        private Color getTileColor(int row, int col) {
-
-            boolean isRowEven = (row % 2 == 0);
-            boolean isColEven = (col % 2 == 0);
-
-
-            if (!(row == 2) && !(row == 3) && !(row == 4)) {
-                if (isRowEven && isColEven) return Color.GRAY;
-                if (isRowEven) return Color.DARK_GRAY;
-                if (isColEven) return Color.DARK_GRAY;
-                return Color.GRAY;
-            }
-            return Color.LIGHT_GRAY;
-        }
-
-
-        private void renderTile(Graphics g, int row, int col) {
-
-            Color tileColor = this.getTileColor(row, col);
-            Tile tile = new Tile(row, col, tileColor);
-            tile.render(g);
-        }
-
-
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }
-
