@@ -1,22 +1,25 @@
 package Figures;
+import java.awt.*;
 
-public abstract class Figure  {
+public abstract class Figure {
+
     protected int row;
     protected int col;
     protected Color color;
     protected int attackDamage;
     protected int armor;
-    protected int healthPoints;
-    protected int attackingSquares;
-    protected int movementSpeed;
-
+    protected int healtPoints;
+    protected int possibleSquresToAttack;
+    protected int speed;
+ 
 
     public Figure(int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    public abstract void drawFigure(Graphics g);
+  
+    public abstract void paint(Graphics g);
 
     public void move(int row, int col) {
         this.row = row;
@@ -32,22 +35,21 @@ public abstract class Figure  {
     }
 
     public int getHealth() {
-        return healthPoints;
+        return healtPoints;
     }
 
     public void setHealth(int health) {
-        this.healthPoints = health;
+        this.healtPoints = health;
     }
 
-    public int getAttackingSquares() {
-        return attackingSquares;
+    public int getPossibleAttackSquares() {
+        return possibleSquresToAttack;
     }
 
-    public int getMovementSpeed() {
-        return movementSpeed;
+    public int getSpeed() {
+        return speed;
     }
 
     public Color getColor() {
         return color;
     }
-}
